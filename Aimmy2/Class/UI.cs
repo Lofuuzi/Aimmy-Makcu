@@ -86,6 +86,7 @@ namespace Class
         public AColorChanger? CC_FOVColor { get; set; }
         public ASlider? S_FOVSize { get; set; }
         public ASlider? S_DynamicFOVSize { get; set; }
+        
 
         // Player Detection
         public ATitle? AT_DetectedPlayer { get; set; }

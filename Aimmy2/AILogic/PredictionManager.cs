@@ -34,10 +34,6 @@ namespace AILogic
 
     internal class WiseTheFoxPrediction
     {
-        /// <summary>
-        /// Proof of Concept Prediction as written by @wisethef0x
-        /// "Exponential Moving Average"
-        /// </summary>
         public struct WTFDetection
         {
             public int X;
@@ -45,30 +41,77 @@ namespace AILogic
             public DateTime Timestamp;
         }
 
-        private DateTime lastUpdateTime;
-        private const double alpha = 0.5; // Smoothing factor, adjust as necessary
+        private const double alpha = 0.5; 
+        private const double defaultPredictionTime = 0.07; 
+
+        private const double DampingDistanceThreshold = 60;  
+        private const double MinDampingFactor = 0.1;           
 
         private double emaX;
         private double emaY;
 
-        public WiseTheFoxPrediction()
-        {
-            lastUpdateTime = DateTime.UtcNow;
-        }
+        private double velocityX;
+        private double velocityY;
+
+        private DateTime lastUpdateTime;
+        private bool initialized = false;
 
         public void UpdateDetection(WTFDetection detection)
         {
-            emaX = lastUpdateTime == DateTime.MinValue ? detection.X : alpha * detection.X + (1 - alpha) * emaX;
-            emaY = lastUpdateTime == DateTime.MinValue ? detection.Y : alpha * detection.Y + (1 - alpha) * emaY;
+            if (!initialized)
+            {
+                emaX = detection.X;
+                emaY = detection.Y;
+                velocityX = 0;
+                velocityY = 0;
+                lastUpdateTime = detection.Timestamp;
+                initialized = true;
+                return;
+            }
 
-            lastUpdateTime = DateTime.UtcNow;
+            double dt = (detection.Timestamp - lastUpdateTime).TotalSeconds;
+            if (dt <= 0.0001) return;
+
+            double previousEmaX = emaX;
+            double previousEmaY = emaY;
+
+            emaX = alpha * detection.X + (1 - alpha) * emaX;
+            emaY = alpha * detection.Y + (1 - alpha) * emaY;
+
+            velocityX = (emaX - previousEmaX) / dt;
+            velocityY = (emaY - previousEmaY) / dt;
+
+            lastUpdateTime = detection.Timestamp;
         }
 
-        public WTFDetection GetEstimatedPosition()
+        public WTFDetection GetEstimatedPosition(double predictionTime = defaultPredictionTime)
         {
-            return new WTFDetection { X = (int)emaX, Y = (int)emaY };
+            double predictedX = emaX + velocityX * predictionTime;
+            double predictedY = emaY + velocityY * predictionTime;
+
+            double distanceX = predictedX - emaX;
+            double distanceY = predictedY - emaY;
+
+           
+            double dampingFactorX = 1.0 - Math.Min(Math.Abs(distanceX) / DampingDistanceThreshold, 1.0);
+            double dampingFactorY = 1.0 - Math.Min(Math.Abs(distanceY) / DampingDistanceThreshold, 1.0);
+
+           
+            dampingFactorX = Math.Max(MinDampingFactor, dampingFactorX);
+            dampingFactorY = Math.Max(MinDampingFactor, dampingFactorY);
+
+            predictedX = emaX + velocityX * predictionTime * dampingFactorX;
+            predictedY = emaY + velocityY * predictionTime * dampingFactorY;
+
+            return new WTFDetection
+            {
+                X = (int)predictedX,
+                Y = (int)predictedY,
+                Timestamp = DateTime.UtcNow
+            };
         }
     }
+
 
     internal class ShalloePredictionV2
     {
@@ -94,6 +137,7 @@ namespace AILogic
         public static int GetSPX()
         {
             return (int)(xValues.Average() * AmountCount + WinAPICaller.GetCursorPosition().X);
+
         }
 
         public static int GetSPY()

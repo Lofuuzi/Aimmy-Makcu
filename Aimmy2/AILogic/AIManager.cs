@@ -973,21 +973,24 @@ namespace Aimmy2.AILogic
             }
 
             Prediction? bestCandidate = (nearest.Length > 0) ? nearest[0].Item2 : null;
-
             Prediction? finalTarget = HandleStickyAim(bestCandidate, KDPredictions);
             if (finalTarget != null)
             {
-                UpdateDetectionBox(finalTarget, detectionBox);
-                SaveFrame(frame, finalTarget);
+                
+                if (KDPredictions.Contains(finalTarget))
+                {
+                    UpdateDetectionBox(finalTarget, detectionBox);
+                    SaveFrame(frame, finalTarget);
+                }
                 return finalTarget;
             }
-
             return null;
         }
         private Prediction? HandleStickyAim(Prediction? bestCandidate, List<Prediction> KDPredictions)
         {
             bool stickyAimEnabled = Dictionary.toggleState["Sticky Aim"];
             if (!stickyAimEnabled) return bestCandidate;
+
             if (_currentTarget != null)
             {
                 Prediction? matchedTarget = null;
@@ -1007,14 +1010,29 @@ namespace Aimmy2.AILogic
                 if (matchedTarget != null)
                 {
                     _consecutiveFramesWithoutTarget = 0;
+                    _currentTarget = matchedTarget; 
                     return matchedTarget;
                 }
 
+                
                 if (++_consecutiveFramesWithoutTarget > MAX_FRAMES_WITHOUT_TARGET)
                 {
                     _currentTarget = null;
                 }
+                else
+                {
+                    
+                    return _currentTarget;
+                }
             }
+
+            
+            if (bestCandidate != null)
+            {
+                _currentTarget = bestCandidate;
+                _consecutiveFramesWithoutTarget = 0;
+            }
+
             return bestCandidate;
         }
 

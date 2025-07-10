@@ -23,8 +23,7 @@ namespace Visuality
         private static ObservableCollection<NoticeItem> notices;
         private static DispatcherTimer cleanupTimer;
         private readonly bool isContainerInstance;
-
-        protected override void OnSourceInitialized(EventArgs e)
+                protected override void OnSourceInitialized(EventArgs e)
         {
             base.OnSourceInitialized(e);
             ClickThroughOverlay.MakeClickThrough(new WindowInteropHelper(this).Handle);

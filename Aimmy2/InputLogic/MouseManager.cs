@@ -25,7 +25,7 @@ namespace InputLogic
         private const uint MOUSEEVENTF_MOVE = 0x0001;
         private static double previousX = 0;
         private static double previousY = 0;
-        public static double smoothingFactor = 0.5;
+        public static double smoothingFactor = 1;
         public static bool IsEMASmoothingEnabled = false;
 
         [DllImport("user32.dll")]
