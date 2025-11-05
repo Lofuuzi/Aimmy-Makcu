@@ -27,9 +27,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>false</UseWindowsForms>
-    <Platforms>AnyCPU;x64</Platforms>	  <Product></Product>
-	  <Title></Title>
-	  <AssemblyName>CouldBeAimmyV2</AssemblyName>
+    <Platforms>AnyCPU;x64</Platforms>	  <Product>三T老夫子</Product>
+	  <Title>TTTWeasel</Title>
+	  <AssemblyName>TTTWeasel</AssemblyName>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <SignAssembly>False</SignAssembly>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
