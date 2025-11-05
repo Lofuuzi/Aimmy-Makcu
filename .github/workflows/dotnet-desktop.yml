@@ -6,6 +6,7 @@ on:
     branches: [ "Aimmy-V2" ]
   pull_request:
     branches: [ "Aimmy-V2" ]
+  workflow_dispatch:
 
 jobs:
 
