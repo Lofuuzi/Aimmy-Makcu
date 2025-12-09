@@ -25,13 +25,13 @@ namespace Aimmy2.Class
         public static Dictionary<string, dynamic> sliderSettings = new()
         {
             { "Suggested Model", ""},
-            { "FOV Size", 361 },
+            { "FOV Size", 366 },
             { "Dynamic FOV Size", 200 },
-            { "Mouse Sensitivity (+/-)", 0.95 },
+            { "Mouse Sensitivity (+/-)", 0.92 },
             { "Mouse Jitter", 0 },
             { "Sticky Aim Threshold", 50 },
-            { "Y Offset (Up/Down)", 0 },
-            { "Y Offset (%)", 50 },
+            { "Y Offset (Up/Down)", 105.0 },
+            { "Y Offset (%)", 20.0 },
             { "X Offset (Left/Right)", 0 },
             { "X Offset (%)", 50 },
             { "EMA Smoothening", 0.66},
@@ -98,7 +98,7 @@ namespace Aimmy2.Class
         {
             { "Prediction Method", "Kalman Filter" },
             { "Detection Area Type", "Closest to Center Screen" },
-            { "Aiming Boundaries Alignment", "Top" },
+            { "Aiming Boundaries Alignment", "Bottom" },
             { "Mouse Movement Method", "MAKCU Support" },
             { "Screen Capture Method", "DirectX" },
             { "Tracer Position", "Bottom" },
@@ -111,7 +111,7 @@ namespace Aimmy2.Class
         {
             { "FOV Color", "#FF8080FF"},
             { "Detected Player Color", "#FF00FFFF"},
-            { "Theme Color", "#FF00BDFF" }
+            { "Theme Color", "#00BFFF" }
         };
 
         public static Dictionary<string, dynamic> AntiRecoilSettings = new()
