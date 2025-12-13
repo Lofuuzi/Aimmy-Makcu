@@ -52,6 +52,13 @@
                        VerticalContentAlignment="Center"
                        Padding="0"
                        Margin="25,50,25,0" />
+                <CheckBox Content="Humanize Anti-Recoil"
+                          IsChecked="{Binding EnableRandomization}" />
+                <Slider Minimum="0"
+                        Maximum="1"
+                        Value="{Binding RandomIntensity}"
+                        TickFrequency="0.1"
+                        IsSnapToTickEnabled="True" />
             </Grid>
         </Border>
         <Border x:Name="BulletBorder"
