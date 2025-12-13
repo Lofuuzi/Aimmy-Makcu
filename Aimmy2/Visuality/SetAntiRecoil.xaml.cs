@@ -135,5 +135,8 @@ namespace Visuality
             ThemeManager.UnregisterElement(this);
             base.OnClosed(e);
         }
+        
+        AntiRecoilManager.EnableRandomization = HumanizeCheckBox.IsChecked == true;
+        AntiRecoilManager.RandomIntensity = RandomSlider.Value;
     }
 }
