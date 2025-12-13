@@ -55,12 +55,12 @@
                 <CheckBox x:Name="HumanizeCheckBox"
                           Content="Humanize Anti-Recoil"
                           Checked="HumanizeCheckBox_Checked"
-                          Unchecked="HumanizeCheckBox_Unchecked"/>
+                          Unchecked="HumanizeCheckBox_Unchecked"
                           IsChecked="{Binding EnableRandomization}" />
                 <Slider x:Name="RandomSlider"
                         Minimum="0"
                         Maximum="1"
-                        ValueChanged="RandomSlider_ValueChanged"/>
+                        ValueChanged="RandomSlider_ValueChanged"
                         Value="{Binding RandomIntensity}"
                         TickFrequency="0.1"
                         IsSnapToTickEnabled="True" />
