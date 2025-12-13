@@ -23,6 +23,9 @@ namespace Visuality
         public SetAntiRecoil(MainWindow MW)
         {
             InitializeComponent();
+        
+            AntiRecoilManager.EnableRandomization = HumanizeCheckBox.IsChecked == true;
+            AntiRecoilManager.RandomIntensity = RandomSlider.Value;
 
             MW.WindowState = WindowState.Minimized;
 
@@ -83,6 +86,22 @@ namespace Visuality
 
             UpdateFireRate();
         }
+        
+        private void HumanizeCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            AntiRecoilManager.EnableRandomization = true;
+        }
+        
+        private void HumanizeCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            AntiRecoilManager.EnableRandomization = false;
+        }
+        
+        private void RandomSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            AntiRecoilManager.RandomIntensity = (float)e.NewValue;
+        }
+
 
         private void BulletNumberTextbox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
@@ -135,8 +154,5 @@ namespace Visuality
             ThemeManager.UnregisterElement(this);
             base.OnClosed(e);
         }
-        
-        AntiRecoilManager.EnableRandomization = HumanizeCheckBox.IsChecked == true;
-        AntiRecoilManager.RandomIntensity = RandomSlider.Value;
     }
 }
