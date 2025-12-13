@@ -36,6 +36,11 @@ namespace Class
         }
         public static void WriteJSON(Dictionary<string, dynamic> dictionary, string path = "bin\\configs\\Default.cfg", string SuggestedModel = "", string ExtraStrings = "")
         {
+            
+            
+            dict["AntiRecoilRandom"] = AntiRecoilManager.EnableRandomization;
+            dict["AntiRecoilRandomIntensity"] = AntiRecoilManager.RandomIntensity;
+            
             try
             {
                 // Ensure the directory exists
@@ -63,6 +68,13 @@ namespace Class
 
         public static void LoadJSON(Dictionary<string, dynamic> dictionary, string path = "bin\\configs\\Default.cfg", bool strict = true)
         {
+            
+            if (dict.TryGetValue("AntiRecoilRandom", out var r))
+                AntiRecoilManager.EnableRandomization = Convert.ToBoolean(r);
+        
+            if (dict.TryGetValue("AntiRecoilRandomIntensity", out var i))
+                AntiRecoilManager.RandomIntensity = Convert.ToSingle(i);
+
             try
             {
                 // Ensure the directory exists before checking for the file
