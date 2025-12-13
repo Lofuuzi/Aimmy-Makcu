@@ -107,5 +107,8 @@ namespace Class
                 }
             }
         }
+        
+        dict["AntiRecoilRandom"] = AntiRecoilManager.EnableRandomization;
+        dict["AntiRecoilRandomIntensity"] = AntiRecoilManager.RandomIntensity;
     }
 }
