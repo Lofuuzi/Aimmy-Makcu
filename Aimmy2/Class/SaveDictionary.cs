@@ -37,12 +37,8 @@ namespace Class
         public static void WriteJSON(Dictionary<string, dynamic> dictionary, string path = "bin\\configs\\Default.cfg", string SuggestedModel = "", string ExtraStrings = "")
         {
             
-            
-            dict["AntiRecoilRandom"] = AntiRecoilManager.EnableRandomization;
-            dict["AntiRecoilRandomIntensity"] = AntiRecoilManager.RandomIntensity;
-            
             try
-            {
+            {           
                 // Ensure the directory exists
                 string? directory = Path.GetDirectoryName(path);
                 if (!string.IsNullOrEmpty(directory) && !Directory.Exists(directory))
@@ -58,6 +54,9 @@ namespace Class
 
                 string json = JsonConvert.SerializeObject(SavedJSONSettings, Formatting.Indented);
                 File.WriteAllText(path, json);
+                
+                dict["AntiRecoilRandom"] = AntiRecoilManager.EnableRandomization;
+                dict["AntiRecoilRandomIntensity"] = AntiRecoilManager.RandomIntensity;
             }
             catch (Exception ex)
             {
@@ -68,13 +67,6 @@ namespace Class
 
         public static void LoadJSON(Dictionary<string, dynamic> dictionary, string path = "bin\\configs\\Default.cfg", bool strict = true)
         {
-            
-            if (dict.TryGetValue("AntiRecoilRandom", out var r))
-                AntiRecoilManager.EnableRandomization = Convert.ToBoolean(r);
-        
-            if (dict.TryGetValue("AntiRecoilRandomIntensity", out var i))
-                AntiRecoilManager.RandomIntensity = Convert.ToSingle(i);
-
             try
             {
                 // Ensure the directory exists before checking for the file
@@ -104,6 +96,11 @@ namespace Class
                         dictionary.Add(key, value);
                     }
                 }
+               if (dict.TryGetValue("AntiRecoilRandom", out var r))
+                    AntiRecoilManager.EnableRandomization = Convert.ToBoolean(r);
+            
+               if (dict.TryGetValue("AntiRecoilRandomIntensity", out var i))
+                    AntiRecoilManager.RandomIntensity = Convert.ToSingle(i);
             }
             catch (Exception ex)
             {
@@ -119,8 +116,5 @@ namespace Class
                 }
             }
         }
-        
-        dict["AntiRecoilRandom"] = AntiRecoilManager.EnableRandomization;
-        dict["AntiRecoilRandomIntensity"] = AntiRecoilManager.RandomIntensity;
     }
 }
