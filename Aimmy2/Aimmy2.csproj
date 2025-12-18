@@ -27,9 +27,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>false</UseWindowsForms>
-    <Platforms>AnyCPU;x64</Platforms>	  <Product>Ldrip</Product>
-	  <Title>Ldripeasel</Title>
-	  <AssemblyName>Ldripeasel</AssemblyName>
+    <Platforms>AnyCPU;x64</Platforms>	  <Product>Synthetix辛泰斯</Product>
+	  <Title>VantSynthetix</Title>
+	  <AssemblyName>VantSynthetix</AssemblyName>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <SignAssembly>False</SignAssembly>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
