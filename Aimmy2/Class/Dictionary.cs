@@ -16,7 +16,7 @@ namespace Aimmy2.Class
             { "Dynamic FOV Keybind", ""},
             { "Emergency Stop Keybind", ""},
             { "Model Switch Keybind", ""},
-            { "Anti Recoil Keybind", ""},
+            { "Anti Recoil Keybind", "Left"},
             { "Disable Anti Recoil Keybind", ""},
             { "Gun 1 Key", ""},
             { "Gun 2 Key", ""},
@@ -25,16 +25,16 @@ namespace Aimmy2.Class
         public static Dictionary<string, dynamic> sliderSettings = new()
         {
             { "Suggested Model", ""},
-            { "FOV Size", 366 },
+            { "FOV Size", 401 },
             { "Dynamic FOV Size", 200 },
-            { "Mouse Sensitivity (+/-)", 0.92 },
+            { "Mouse Sensitivity (+/-)", 0.93 },
             { "Mouse Jitter", 0 },
             { "Sticky Aim Threshold", 50 },
-            { "Y Offset (Up/Down)", 105.0 },
-            { "Y Offset (%)", 20.0 },
+            { "Y Offset (Up/Down)", 146.0 },
+            { "Y Offset (%)", 50 },
             { "X Offset (Left/Right)", 0 },
             { "X Offset (%)", 50 },
-            { "EMA Smoothening", 0.66},
+            { "EMA Smoothening", 1.0},
             { "Auto Trigger Delay", 0.1 },
             { "AI Minimum Confidence", 50 },
             { "AI Confidence Font Size", 20 },
@@ -51,11 +51,11 @@ namespace Aimmy2.Class
             { "Sticky Aim", false },
             { "Constant AI Tracking", false },
             { "Predictions", false },
-            { "EMA Smoothening", true },
+            { "EMA Smoothening", false },
             { "Enable Model Switch Keybind", false },
             { "Enable Gun Switching Keybind", false },
             { "Auto Trigger", false },
-            { "Anti Recoil", false },
+            { "Anti Recoil", true },
             { "FOV", false },
             { "Dynamic FOV", false },
             { "Masking", false },
@@ -84,7 +84,7 @@ namespace Aimmy2.Class
             { "Aim Assist", false },
             { "Aim Config", false },
             { "Auto Trigger", true },
-            { "Anti Recoil", true },
+            { "Anti Recoil", false },
             { "Anti Recoil Config", true },
             { "FOV Config", true },
             { "ESP Config", true },
@@ -116,9 +116,9 @@ namespace Aimmy2.Class
 
         public static Dictionary<string, dynamic> AntiRecoilSettings = new()
         {
-            { "Hold Time", 10 },
-            { "Fire Rate", 200 },
-            { "Y Recoil (Up/Down)", 10 },
+            { "Hold Time", 1.0 },
+            { "Fire Rate", 1.0 },
+            { "Y Recoil (Up/Down)", 6.0 },
             { "X Recoil (Left/Right)", 0 }
         };
 
