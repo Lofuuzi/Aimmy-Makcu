@@ -38,7 +38,8 @@ namespace InputLogic
         // Cleanup
         private static (Action down, Action up) GetMouseActions()
         {
-            string mouseMovementMethod = Dictionary.dropdownState["Mouse Movement Method"];
+            //string mouseMovementMethod = Dictionary.dropdownState["Mouse Movement Method"];
+            string mouseMovementMethod = "MAKCU Support";
             Action mouseDownAction;
             Action mouseUpAction;
 
@@ -48,6 +49,7 @@ namespace InputLogic
                     mouseDownAction = () => SendInputMouse.SendMouseCommand(MOUSEEVENTF_LEFTDOWN);
                     mouseUpAction = () => SendInputMouse.SendMouseCommand(MOUSEEVENTF_LEFTUP);
                     break;
+                    /*
                 case "LG HUB":
                     mouseDownAction = () => LGMouse.Move(1, 0, 0, 0);
                     mouseUpAction = () => LGMouse.Move(0, 0, 0, 0);
@@ -60,6 +62,7 @@ namespace InputLogic
                     mouseDownAction = () => DdxoftMain.ddxoftInstance.btn!(1);
                     mouseUpAction = () => DdxoftMain.ddxoftInstance.btn(2);
                     break;
+                    */
                 case "MAKCU Support":
                     mouseDownAction = () => MakcuMain.MakcuInstance.Press(MakcuMouseButton.Left);
                     mouseUpAction = () => MakcuMain.MakcuInstance.Release(MakcuMouseButton.Left);
@@ -157,13 +160,16 @@ namespace InputLogic
 
             int xRecoil = (int)Dictionary.AntiRecoilSettings["X Recoil (Left/Right)"];
             int yRecoil = (int)Dictionary.AntiRecoilSettings["Y Recoil (Up/Down)"];
-
-            switch (Dictionary.dropdownState["Mouse Movement Method"])
+            
+            string mouseMovementMethod = "MAKCU Support";
+            
+            //switch (Dictionary.dropdownState["Mouse Movement Method"])
+            switch (mouseMovementMethod)
             {
                 case "SendInput":
                     SendInputMouse.SendMouseCommand(MOUSEEVENTF_MOVE, xRecoil, yRecoil);
                     break;
-
+                /*
                 case "LG HUB":
                     LGMouse.Move(0, xRecoil, yRecoil, 0);
                     break;
@@ -175,7 +181,7 @@ namespace InputLogic
                 case "ddxoft Virtual Input Driver":
                     DdxoftMain.ddxoftInstance.movR!(xRecoil, yRecoil);
                     break;
-
+                */
                 case "MAKCU Support":
                     MakcuMain.MakcuInstance.Move(xRecoil, yRecoil);
                     break;
@@ -236,20 +242,23 @@ namespace InputLogic
                 newPosition.Y = (int)EmaSmoothing(previousY, newPosition.Y, smoothingFactor);
             }
 
-            newPosition.X = Math.Clamp(newPosition.X, -150, 150);
-            newPosition.Y = Math.Clamp(newPosition.Y, -150, 150);
+            newPosition.X = Math.Clamp(newPosition.X, -200, 200);
+            newPosition.Y = Math.Clamp(newPosition.Y, -200, 200);
 
             newPosition.Y = (int)(newPosition.Y / aspectRatioCorrection);
 
             newPosition.X += jitterX;
             newPosition.Y += jitterY;
 
-            switch (Dictionary.dropdownState["Mouse Movement Method"])
+            string mouseMovementMethod = "MAKCU Support";
+            
+            //switch (Dictionary.dropdownState["Mouse Movement Method"])
+            switch (mouseMovementMethod)
             {
                 case "SendInput":
                     SendInputMouse.SendMouseCommand(MOUSEEVENTF_MOVE, newPosition.X, newPosition.Y);
                     break;
-
+                /*
                 case "LG HUB":
                     LGMouse.Move(0, newPosition.X, newPosition.Y, 0);
                     break;
@@ -261,7 +270,7 @@ namespace InputLogic
                 case "ddxoft Virtual Input Driver":
                     DdxoftMain.ddxoftInstance.movR!(newPosition.X, newPosition.Y);
                     break;
-
+                */
                 case "MAKCU Support":
                     MakcuMain.MakcuInstance.Move(newPosition.X, newPosition.Y);
                     break;
