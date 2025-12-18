@@ -6,6 +6,21 @@ namespace InputLogic
     {
         private static readonly int[] permutation = new int[512];
 
+        static int ranNum()
+        {
+            int baseSense = 4;
+            
+            // 1. 判定是否觸發 % 機率，NextDouble() 會產生 0.0 ~ 1.0 之間的數
+            if (Random.Shared.NextDouble() < 0.55)
+            {
+                return baseSense; // % 機率直接回傳baseSense
+            }
+            // 2. 剩下 % 機率，隨機回傳+/-數值，這裡用三元運算子：骰 0 就 -1，骰 1 就 +1
+            int offset = Random.Shared.Next(0, 2) == 0 ? -1 : 1;
+            
+            return baseSense + offset;
+        }
+
         internal static Point CubicBezier(Point start, Point end, Point control1, Point control2, double t)
         {
             double u = 1 - t;
@@ -14,6 +29,11 @@ namespace InputLogic
 
             double x = uu * u * start.X + 3 * uu * t * control1.X + 3 * u * tt * control2.X + tt * t * end.X;
             double y = uu * u * start.Y + 3 * uu * t * control1.Y + 3 * u * tt * control2.Y + tt * t * end.Y;
+
+            if (start.Y < end.Y + 5)
+            {
+                y += ranNum();
+            }
 
             return new Point((int)x, (int)y);
         }
@@ -118,7 +138,7 @@ namespace InputLogic
             double distance = Math.Sqrt((end.X - start.X) * (end.X - start.X) + (end.Y - start.Y) * (end.Y - start.Y));
 
             // Deadzone check - if within 2 arm lengths (about 120 pixels), use flick behavior
-            const double deadzoneRadius = 120.0;
+            const double deadzoneRadius = 100.0;
 
             if (distance <= deadzoneRadius)
             {
