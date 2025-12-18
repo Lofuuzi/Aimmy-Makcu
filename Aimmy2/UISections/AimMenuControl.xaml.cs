@@ -297,9 +297,9 @@ namespace Aimmy2.Controls
                             true, 10000);
                     }
                 })
-                .AddSlider("Y Offset (Up/Down)", "Offset", 1, 1, -150, 150, s => uiManager.S_YOffset = s)
+                .AddSlider("Y Offset (Up/Down)", "Offset", 1, 1, -200, 200, s => uiManager.S_YOffset = s)
                 .AddSlider("Y Offset (%)", "Percent", 1, 1, 0, 100, s => uiManager.S_YOffsetPercent = s)
-                .AddSlider("X Offset (Left/Right)", "Offset", 1, 1, -150, 150, s => uiManager.S_XOffset = s)
+                .AddSlider("X Offset (Left/Right)", "Offset", 1, 1, -200, 200, s => uiManager.S_XOffset = s)
                 .AddSlider("X Offset (%)", "Percent", 1, 1, 0, 100, s => uiManager.S_XOffsetPercent = s)
                 .AddSlider("EMA Smoothening", "Amount", 0.01, 0.01, 0.01, 1, s =>
                 {
