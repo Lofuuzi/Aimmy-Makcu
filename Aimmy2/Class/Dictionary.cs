@@ -25,9 +25,9 @@ namespace Aimmy2.Class
         public static Dictionary<string, dynamic> sliderSettings = new()
         {
             { "Suggested Model", ""},
-            { "FOV Size", 401 },
+            { "FOV Size", 389 },
             { "Dynamic FOV Size", 200 },
-            { "Mouse Sensitivity (+/-)", 0.93 },
+            { "Mouse Sensitivity (+/-)", 0.94 },
             { "Mouse Jitter", 0 },
             { "Sticky Aim Threshold", 50 },
             { "Y Offset (Up/Down)", 146.0 },
@@ -36,7 +36,7 @@ namespace Aimmy2.Class
             { "X Offset (%)", 50 },
             { "EMA Smoothening", 1.0},
             { "Auto Trigger Delay", 0.1 },
-            { "AI Minimum Confidence", 50 },
+            { "AI Minimum Confidence", 65 },
             { "AI Confidence Font Size", 20 },
             { "Corner Radius", 0 },
             { "Border Thickness", 1 },
