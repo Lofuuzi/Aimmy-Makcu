@@ -30,7 +30,7 @@ namespace InputLogic
             double x = uu * u * start.X + 3 * uu * t * control1.X + 3 * u * tt * control2.X + tt * t * end.X;
             double y = uu * u * start.Y + 3 * uu * t * control1.Y + 3 * u * tt * control2.Y + tt * t * end.Y;
 
-            if (start.Y < end.Y + 5)
+            if (start.Y < end.Y + 6)
             {
                 y += ranNum();
             }
