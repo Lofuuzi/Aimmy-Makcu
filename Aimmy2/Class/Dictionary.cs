@@ -36,7 +36,7 @@ namespace Aimmy2.Class
             { "X Offset (%)", 50 },
             { "EMA Smoothening", 1.0},
             { "Auto Trigger Delay", 0.1 },
-            { "AI Minimum Confidence", 55 },
+            { "AI Minimum Confidence", 50 },
             { "AI Confidence Font Size", 20 },
             { "Corner Radius", 0 },
             { "Border Thickness", 1 },
