@@ -38,6 +38,7 @@ namespace InputLogic
             else
             {
                 x += 2;
+            }
 
             // anti-recoil
             if (start.Y < end.Y + 6)
