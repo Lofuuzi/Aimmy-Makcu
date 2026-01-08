@@ -31,13 +31,13 @@ namespace InputLogic
             double y = uu * u * start.Y + 3 * uu * t * control1.Y + 3 * u * tt * control2.Y + tt * t * end.Y;
 
             // anti-shake
-            if (start.X < end.X - 2)
+            if (start.X < end.X - 1)
             {
-                x -= 2;
+                x -= 1;
             }
-            else if  (start.X > end.X + 2)
+            else if  (start.X > end.X + 1)
             {
-                x += 2;
+                x += 1;
             }
 
             // anti-recoil
