@@ -60,5 +60,5 @@ jobs:
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: aimmyidk
+        name: VantSynthetix
         path: Aimmy2\bin\x64\Release\
