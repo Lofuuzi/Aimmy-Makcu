@@ -19,7 +19,6 @@ namespace MouseMovementLibraries.MakcuSupport
 
         public static void ConfigureMakcuInstance(bool debugEnabled, bool sendInitCmds)
         {
-
             Console.WriteLine($"MakcuMain: Configuring MakcuInstance. Debug: {debugEnabled}, SendInitCmds: {sendInitCmds}");
             UnsubscribeFromButtonEvents();
             MakcuInstance?.Dispose();
@@ -75,10 +74,7 @@ namespace MouseMovementLibraries.MakcuSupport
                 MessageBox.Show($"Catastrophic exception during Makcu initialization. Error: {ex.Message}\nStack Trace: {ex.StackTrace}",
                                 "Makcu Critical Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 _isMakcuLoaded = false;
-                if (MakcuInstance != null && MakcuInstance.IsInitializedAndConnected)
-                {
-                    MakcuInstance.Close();
-                }
+                MakcuInstance?.Close();
                 return false;
             }
         }
@@ -118,15 +114,9 @@ namespace MouseMovementLibraries.MakcuSupport
 
         private static void OnMakcuButtonStateChanged(MakcuMouseButton button, bool isPressed)
         {
-
             string state = isPressed ? "Presionado" : "Liberado";
             Debug.WriteLine($"{button} físico {state}!");
-
-
         }
-
-
-
 
         public static void DisposeInstance()
         {
